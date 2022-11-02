@@ -1,61 +1,23 @@
 ion-toolbar {
-    --background:  #4697ee;
-    color: white;
-  
-    ion-buttons {
-      --background: white;
-    }
-  
-    border-radius: 0 0 25px 25px;
-    height: 65px;
+  --background:  #4697ee;
+  color: white;
+
+  ion-buttons {
+    --background: white;
   }
 
-   * {
-    font-family: "Poppins", sans-serif;
+  border-radius: 0 0 25px 25px;
+  height: 65px;
+}
+
+ * {
+  font-family: "Poppins", sans-serif;
+}
+
+ion-content {
+  --background:linear-gradient(to right,#fff, #9dbcdc);
   }
-  ion-content {
-    --background:linear-gradient(to right,#fff, #9dbcdc);
-    ion-searchbar {
-      --background: rgb(238, 238, 238);
-      --border-radius: 20px;
-    }
-  
-    .active {
-      background-color: rgb(34, 54, 155);
-      color: white;
-    }
-    .filter {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-    ion-grid {
-      margin-top: 20px;
-      margin-left: 20px;
-      margin-right: 20px;
-      box-shadow: 1px 1px 5px #4697ee;
-      --color: rgb(32, 32, 40);
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-      ion-label {
-        margin-left: 10px;
-        h5 {
-          font-weight: bold;
-          font-size: 12pt;
-        }
-        h6 {
-          font-size: 10pt;
-        }
-      }
-    }
-    img {
-      height: 130px;
-      width: 130px;
-  
-      border-radius: 8px;
-    }
-    .icon-detail{
-      margin-left: 310px;
-    }
-  }
+
+ion-card{
+  margin-bottom: -6%;
+}
