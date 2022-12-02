@@ -6,11 +6,11 @@
       <p style="color: black; font-weight: bold;">Please Login <br>to Continue</p>
     </div>
     <div class="form">
-      <ion-input type="number" placeholder="Npm" [(ngModel)]="npm"></ion-input>
-      <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+      <ion-input type="number" placeholder="Npm" [(ngModel)]="user_id"></ion-input>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="pass"></ion-input>
     </div>
 
-    <div class="button" (click)="login(password)">
+    <div class="button" (click)="login(pass)">
       Login <ion-icon name="chevron-forward-outline"></ion-icon>
     </div>
   </ion-content>

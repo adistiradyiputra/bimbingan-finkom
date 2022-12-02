@@ -17,6 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class Tab2Page {
   public nama: string;
+  user_id: any;
   thn_akademik_setting: any;
   id: any;
   results: any;
@@ -38,7 +39,7 @@ export class Tab2Page {
     private storage: Storage
   ) {
        this.getcapture();
-      this.getsetting();
+//     this.getsetting();
 
     
     
@@ -51,35 +52,36 @@ export class Tab2Page {
   getcapture() {
     this.storage.get('isLoggedIn').then(val => {
       let data: Observable<any>;
-      data = this.http.get('https://apikonseling.adistiradyiputra.my.id/api/getbimbingan/' + val);
+      data = this.http.get('http://bimbingan.api.unbin.ac.id/index.php/api/getbimbingan/' + val.userid);
       data.subscribe(result => {
-        this.npm = result;
+        this.npm = result[0].npm;
         this.kd_bimbingan = result[0].kd_bimbingan;
         this.judul = result[0].judul;
         this.topik = result[0].topik;
         this.dospem = result[0].dospem;
         this.thn_akademik_capture = result[0].thn_akademik;
-        // console.log(result[0].kd_bimbingan);
-        // console.log(result[0].judul);
-        // console.log(result[0].topik);
-        // console.log(result[0].dospem);
+        console.log(result[0].npm);
+        console.log(result[0].kd_bimbingan);
+        console.log(result[0].judul);
+        console.log(result[0].topik);
+        console.log(result[0].dospem);
         // console.log(result[0].thn_akademik);
 
       });
     })  
   }
 
-  getsetting() {
-    let data: Observable<any>;
-    data = this.http.get('https://apikonseling.adistiradyiputra.my.id/api/getsetting/');
-    data.subscribe(result => {
-      this.id = result[0].id;
-      this.thn_akademik_setting = result[0].thn_akademik;
-      console.log(result[0].id);
-      console.log(result[0].thn_akademik);
+  // getsetting() {
+  //   let data: Observable<any>;
+  //   data = this.http.get('http://bimbingan.api.unbin.ac.id/index.php/api/getbimbingan/');
+  //   data.subscribe(result => {
+  //     this.kd_bimbingan = result[0].kd_bimbingan;
+  //     this.thn_akademik_setting = result[0].thn_akademik;
+  //     console.log(result[0].kd_bimbingan);
+  //     console.log(result[0].thn_akademik);
   
-    });
-  }
+  //   });
+  // }
 
   async presentToast(text, colour) {
     const toast = await this.toastCtrl.create({
@@ -144,7 +146,7 @@ export class Tab2Page {
     setTimeout(() => {
       // Any calls to load data go here
       event.target.complete();
-      this.getsetting();
+     // this.getsetting();
       this.getcapture();
     }, 2000);
   };

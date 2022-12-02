@@ -16,8 +16,8 @@ import {
 export class LoginPage implements OnInit {
   results: any;
   nama: string;
-  npm: any;
-  password: string = '';
+  user_id: any;
+  pass: string = '';
   qrdata: any;
   createCode: any;
 
@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
   }
 
   public create(){
-    this.createCode = this.npm;
+    this.createCode = this.user_id;
   }
 
   displayToast(message) {
@@ -60,18 +60,18 @@ export class LoginPage implements OnInit {
   }
 
   async login(input) {
-    if (this.npm === '') {
-      this.presentToast('npm cannot be empty!');
-    } else if (this.password === '') {
-      this.presentToast('Password cannot be empty');
+    if (this.user_id === '') {
+      this.presentToast('user_id cannot be empty!');
+    } else if (this.pass === '') {
+      this.presentToast('pass cannot be empty');
     } else {
       const loader = await this.loadingCtrl.create({
         message: 'Please wait...',
       });
       loader.present();
       const data = {
-        npm: this.npm,
-        password: this.password,
+        user_id: this.user_id,
+        pass: this.pass,
       };
       const header = {
         // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -83,20 +83,20 @@ export class LoginPage implements OnInit {
       try {
        const storage = await this.storage.create();
         let data: Observable<any>;
-        this.password = input;
+        this.pass = input;
         const loading = await this.loadingCtrl.create({
           message: 'Loading...',
         });
 
-        if (this.npm === null && this.password === null) {
+        if (this.user_id === null && this.pass === null) {
         this.presentToast('Data tidak boleh ada yang kosong');
         } else {
         await loading.present();
         data = this.http.get(
-        'https://apikonseling.adistiradyiputra.my.id/api/login/' +
-          this.npm +
+        ' http://bimbingan.api.unbin.ac.id/index.php/api/login/' +
+          this.user_id +
           '/' +
-          this.password
+          this.pass
         );
         data
         .pipe(
@@ -109,16 +109,16 @@ export class LoginPage implements OnInit {
          
           if (this.results.status === 'Ok') {
             // this.router.navigate(['tabs/tab1', {data: this.input_b}]);
-            await this.storage.set('isLoggedIn', this.results.result[0].kd_bimbingan);
-                    localStorage.setItem('isLoggedIn', this.results.result[0].kd_bimbingan);
+            await this.storage.set('isLoggedIn', this.results.result[0]);
+                    localStorage.setItem('isLoggedIn', this.results.result[0]);
                     loader.dismiss();
-            this.npm = this.create();
+            this.user_id = this.create();
             this.navCtrl.navigateRoot(['tabs/tab1']);
-            this.password = null;
-            console.log(this.results)
+            this.pass = null;
+            // console.log(this.results)
           } else {
             loader.dismiss();
-            this.presentToast('Please Check npm and Password correctly');
+            this.presentToast('Please Check user_id and pass correctly');
           }
         });  }
       } catch (err) {

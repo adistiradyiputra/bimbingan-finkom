@@ -16,6 +16,7 @@ export class Tab4Page implements OnInit {
   fakultas_info: any;
   prodi_info: any;
   dentry: any;
+  arrayData: any;
 
   constructor(
     private storage: Storage,
@@ -30,9 +31,17 @@ export class Tab4Page implements OnInit {
 
   getinfo() {
     let data: Observable<any>;
-    data = this.http.get('https://apikonseling.adistiradyiputra.my.id/api/getakademik/');
+    data = this.http.get('https://apikonseling.adistiradyiputra.my.id/api/getakademik');
     data.subscribe(result => {
+      
+      this.arrayData = result;
+        for(let a of this.arrayData){
+          console.log(a);
+        }
+
       this.kd_informasi = result[0].kd_informasi;
+      this.fakultas_info = result[0].fakultas_info;
+      this.prodi_info = result[0].prodi_info;
       this.thn_akademik_informasi = result[0].thn_akademik;
       console.log(result[0].kd_informasi);
       console.log(result[0].thn_akademik);

@@ -29,6 +29,7 @@ export class Tab1Page {
   ];
 
   kd_bimbingan: any;
+  user_id: any;
   results: any;
   nama: string;
   npm: any;
@@ -43,7 +44,7 @@ export class Tab1Page {
 
   ) {
 
-    this.getname();
+//  this.getname();
     this.create();
 
     
@@ -58,32 +59,16 @@ export class Tab1Page {
 
   public create(){
     this.storage.get('isLoggedIn').then(val => {
-      let data: Observable<any>;
-      data = this.http.get('https://apikonseling.adistiradyiputra.my.id/api/getname/'+val);
-      data.subscribe(result => {       
-        this.createCode = result[0].npm;
-        this.nama = result[0].nama;
-        // console.log(this.npm);
-        // console.log(this.nama);
-    
-      });
+     this.npm = val.userid
+     this.nama = val.nama
+     this.createCode = val.userid
+     console.log(this.npm)
+     console.log(this.nama)
     });
       
   }
 
-  getname() {
-      this.storage.get('isLoggedIn').then(val => {
-      let data: Observable<any>;
-      data = this.http.get('https://apikonseling.adistiradyiputra.my.id/api/getname/'+val);
-      data.subscribe(result => {       
-        this.npm = result[0].npm;
-        this.nama = result[0].nama;
-        console.log(this.npm);
-        console.log(this.nama);
-    
-      });
-    })
-  }
+
   
 
   
