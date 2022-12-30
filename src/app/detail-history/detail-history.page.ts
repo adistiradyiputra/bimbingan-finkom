@@ -40,7 +40,7 @@ export class DetailHistoryPage implements OnInit {
 
  async getcapture(kd_capture) {
       let data: Observable<any>;
-      data = this.http.get('https://apikonseling.adistiradyiputra.my.id/api/getcapture/'+ kd_capture );
+      data = this.http.get('http://bimbingan.api.unbin.ac.id/index.php/api/detailbimbim/'+ kd_capture );
       data.subscribe(result => {
         // this.arrayData = result;
         // for(let a of this.arrayData){

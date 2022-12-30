@@ -15,6 +15,7 @@ export class Tab3Page {
   public arrayData: any;
   unbinData: any;
   public nama: string;
+  user_id: any
   results: any;
   npm: any;
   kd_bimbingan: any;
@@ -26,6 +27,8 @@ export class Tab3Page {
   keterangan: string;
   dentry: any;
   kd_capture: any;
+  ctype: any;
+
 
   constructor(
     public popoverController: PopoverController,
@@ -34,47 +37,66 @@ export class Tab3Page {
     private modalCtrl: ModalController
     ) {
 
-      this.getcapture()
+      this.getskripsi();
 
     }
   
-  async presentPopover(ev: any){
-    const popover = await this.popoverController.create({
-      component: PopupComponentPage,
-      event: ev,
-      mode: 'ios',
-      translucent: true,
-    });
-    await popover.present();
-    const {role} = await popover.onDidDismiss();
-  }
-
-  getcapture() {
-    this.storage.get('isLoggedIn').then(val => {
-      let data: Observable<any>;
-      data = this.http.get('https://apikonseling.adistiradyiputra.my.id/api/getbyidbimbim/' + val);
-      data.subscribe(result => {
-        // console.log(result[0])
-        this.arrayData = result;
-        for(let a of this.arrayData){
-          console.log(a);
-        }
-        // console.log(this.arrayData)
-        // this.npm = result;
-        this.kd_capture = result[0].kd_capture
-        this.kd_bimbingan = result[0].kd_bimbingan;
-        this.judul = result[0].judul;
-        this.topik = result[0].topik;
-        this.dospem = result[0].dospem;
-        this.thn_akademik = result[0].thn_akademik;
-        // console.log(result[0].kd_capture);
-        // console.log(result[0].kd_bimbingan);
-        // console.log(result[0].judul);
-        // console.log(result[0].topik);
-        // console.log(result[0].dospem);
-        // console.log(result[0].thn_akademik);
-
+    async presentPopover(ev: any){
+      const popover = await this.popoverController.create({
+        component: PopupComponentPage,
+        event: ev,
+        mode: 'ios',
+        translucent: true,
       });
+      await popover.present();
+      const {role} = await popover.onDidDismiss();
+    }
+
+  getskripsi(){
+    this.storage.get('isLoggedIn').then(val => {
+      console.log(val.userid)
+      let data: Observable<any>;
+      if(this.ctype === "skripsi"){
+        data = this.http.get('http://bimbingan.api.unbin.ac.id/index.php/api/getbyskripsi/'+ val.userid);
+        data.subscribe(result => {
+          // console.log(result[0])
+          this.arrayData = result;
+          for(let a of this.arrayData){
+            console.log(a);
+          }
+          //  console.log(this.arrayData)
+          // this.npm = result;
+          this.kd_capture = result.kd_capture;
+          this.user_id = result.userid;
+          this.kd_bimbingan = result.kd_bimbingan;
+          this.judul = result.judul;
+          this.topik = result.topik;
+          this.ctype = result.ctype;
+          this.dospem = result.dospem;
+          this.thn_akademik = result.thn_akademik;
+        });  
+      }else{
+        if(this.ctype === "proposal"){
+          data = this.http.get('http://bimbingan.api.unbin.ac.id/index.php/api/getbyproposal/'+ val.userid);
+          data.subscribe(result => {
+            // console.log(result[0])
+            this.arrayData = result;
+            for(let a of this.arrayData){
+              console.log(a);
+            }
+            //  console.log(this.arrayData)
+            // this.npm = result;
+            this.kd_capture = result.kd_capture;
+            this.user_id = result.userid;
+            this.kd_bimbingan = result.kd_bimbingan;
+            this.judul = result.judul;
+            this.topik = result.topik;
+            this.ctype = result.ctype;
+            this.dospem = result.dospem;
+            this.thn_akademik = result.thn_akademik;
+          });  
+        }
+      }
     })
   }
 
@@ -95,8 +117,15 @@ export class Tab3Page {
     setTimeout(() => {
       // Any calls to load data go here
       event.target.complete();
-      this.getcapture()
+      if(this.ctype === "proposal"){
+        this.getskripsi()
+      }else{
+        if(this.ctype === "skripsi"){
+          this.getskripsi()
+        }       
+      }
     }, 2000);
   };
+  }
 
-}
+

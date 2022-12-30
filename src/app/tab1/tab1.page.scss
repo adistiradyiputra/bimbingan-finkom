@@ -186,5 +186,9 @@ ion-header {
         }
       }
     }
+    .live-event:hover {
+      transform: scale(1.02) perspective(0px);
+      box-shadow: 0 10px 10px rgba(63, 124, 223, 0.7);
+    }
   }
 }

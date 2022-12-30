@@ -13,8 +13,8 @@ export class Tab4Page implements OnInit {
   kd_informasi: any;
   thn_akademik_setting: any;
   thn_akademik_informasi: any;
-  fakultas_info: any;
-  prodi_info: any;
+  proposal: any;
+  skripsi: any;
   dentry: any;
   arrayData: any;
 
@@ -26,45 +26,47 @@ export class Tab4Page implements OnInit {
   ngOnInit() {
 
     this.getinfo();
-    this.getsetting()
+  //  this.getsetting()
   }
 
   getinfo() {
+  
     let data: Observable<any>;
-    data = this.http.get('https://apikonseling.adistiradyiputra.my.id/api/getakademik');
+    data = this.http.get('http://bimbingan.api.unbin.ac.id/index.php/api/info_finkom');
     data.subscribe(result => {
       
       this.arrayData = result;
         for(let a of this.arrayData){
           console.log(a);
         }
-
-      this.kd_informasi = result[0].kd_informasi;
-      this.fakultas_info = result[0].fakultas_info;
-      this.prodi_info = result[0].prodi_info;
-      this.thn_akademik_informasi = result[0].thn_akademik;
-      console.log(result[0].kd_informasi);
-      console.log(result[0].thn_akademik);
+      this.kd_informasi = result.kd_informasi;
+      this.proposal = result.proposal;
+      this.skripsi = result.skripsi;
+      this.thn_akademik_informasi = result.thn_akademik;
+      console.log(result.kd_informasi);
+      console.log(result.proposal)
+      console.log(result.skripsi)
+      console.log(result.thn_akademik);
     });
 }
 
-getsetting() {
-  let data: Observable<any>;
-  data = this.http.get('https://apikonseling.adistiradyiputra.my.id/api/getsetting/');
-  data.subscribe(result => {
-    this.id = result[0].id;
-    this.thn_akademik_setting = result[0].thn_akademik;
-    console.log(result[0].id);
-    console.log(result[0].thn_akademik);
-  });
-}
+// getsetting() {
+//   let data: Observable<any>;
+//   data = this.http.get('https://apikonseling.adistiradyiputra.my.id/api/getsetting/');
+//   data.subscribe(result => {
+//     this.id = result[0].id;
+//     this.thn_akademik_setting = result[0].thn_akademik;
+//     console.log(result[0].id);
+//     console.log(result[0].thn_akademik);
+//   });
+// }
 
 handleRefresh(event) {
   setTimeout(() => {
     // Any calls to load data go here
     event.target.complete();
     this.getinfo();
-    this.getsetting();
+  //  this.getsetting();
   }, 2000);
 };
 }

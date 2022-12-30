@@ -10,21 +10,27 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div style="margin-top: 5px;"  *ngIf="thn_akademik_informasi == thn_akademik_setting ">
+  <div style="margin-top: 5px; ">
     <div class="chats" *ngFor="let hasil of arrayData">
+      <div *ngIf="hasil.proposal !== ''">
+        <p data-time="4:20 PM" class="chat-bubble msg-in " >
+          <ion-row>
+            <ion-avatar><img src="assets/london.png" alt=""></ion-avatar>&nbsp;
+            <ion-note style="margin-top: 10px; margin-left: 10px;"><b>FINKOM - PROPOSAL</b></ion-note><br><br>
+             {{hasil.proposal}}  
+          </ion-row>
+        </p>
+      </div>
 
-      <p data-time="4:20 PM" class="chat-bubble msg-in " >
-        <ion-icon name="people-circle-sharp">
-        </ion-icon>&nbsp;
-        <ion-note>Faculty</ion-note><br><br>
-       {{hasil.fakultas_info}}
-      </p>
-
-      <p data-time="4:20 PM" class="chat-bubble msg-out">
-        <ion-icon name="school" slot="end"></ion-icon>&nbsp;
-        <ion-note>Prody</ion-note><br><br>
-         {{hasil.prodi_info}}  
-      </p>
+      <div *ngIf="hasil.skripsi !== ''">
+        <p data-time="4:20 PM" class="chat-bubble msg-out">
+          <ion-row>
+            <ion-avatar><img src="assets/london.png" alt=""></ion-avatar>&nbsp;
+            <ion-note style="margin-top: 10px; margin-left: 10px;"><b>FINKOM - SKRIPSI</b></ion-note><br><br>
+             {{hasil.skripsi}}  
+          </ion-row>
+        </p>
+      </div>
     
     </div>
   </div>

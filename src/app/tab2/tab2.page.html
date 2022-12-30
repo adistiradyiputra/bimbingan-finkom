@@ -10,8 +10,9 @@
       </ion-refresher>
       <ion-item>
         <ion-label position="stacked"></ion-label>
-        <ion-input disabled  type="text" placeholder="Masukkan Tahun Akademik" [(ngModel)]="thn_akademik_capture"></ion-input>
+        <ion-input disabled  type="text" placeholder="Masukkan Tahun Akademik" [(ngModel)]="thn_akademik"></ion-input>
       </ion-item> <hr>
+      <ion-input hidden disabled type="number"  [(ngModel)]="npm"></ion-input>
 
       <ion-input hidden disabled type="number"  [(ngModel)]="kd_bimbingan"></ion-input>
 
@@ -64,5 +65,5 @@
 
       </ion-card-content>
 
-      <ion-button color="success" (click)="uploadData()" expand="block">Submit</ion-button>
+      <ion-button color="success" (click)="uploadData()" expand="full" fill="solid" shape="round">Submit</ion-button>
 </ion-content>

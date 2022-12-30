@@ -17,8 +17,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class Tab2Page {
   public nama: string;
+  ctype: any;
   user_id: any;
   thn_akademik_setting: any;
+  thn_akademik: any;
   id: any;
   results: any;
   npm: any;
@@ -59,12 +61,13 @@ export class Tab2Page {
         this.judul = result[0].judul;
         this.topik = result[0].topik;
         this.dospem = result[0].dospem;
-        this.thn_akademik_capture = result[0].thn_akademik;
+        this.thn_akademik = result[0].thn_akademik;
         console.log(result[0].npm);
         console.log(result[0].kd_bimbingan);
         console.log(result[0].judul);
         console.log(result[0].topik);
         console.log(result[0].dospem);
+        console.log(result[0].thn_akademik);
         // console.log(result[0].thn_akademik);
 
       });
@@ -101,16 +104,19 @@ export class Tab2Page {
     formdata.append('kd_bimbingan', this.kd_bimbingan);
     formdata.append('keterangan', this.keterangan);
     formdata.append('dentry', this.dentry);
-    formdata.append('thn_akademik', this.thn_akademik_capture);
-    
+    formdata.append('npm', this.npm);
+    formdata.append('ctype', this.ctype);
+    formdata.append('thn_akademik', this.thn_akademik);
     formdata.append('file', this.images);
     // Use your own API!
     const url =
-      'https://apikonseling.adistiradyiputra.my.id/api/upload/'
+      'http://bimbingan.api.unbin.ac.id/index.php/api/upload/'
     if (
-      this.thn_akademik_capture === undefined ||
+      this.thn_akademik === undefined ||
       this.kd_bimbingan === undefined ||
       this.images === undefined ||
+      this.ctype === undefined ||
+      this.npm === undefined ||
       this.keterangan === undefined ||
       this.dentry === undefined
     ) {

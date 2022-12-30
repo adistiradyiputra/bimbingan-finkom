@@ -1,7 +1,8 @@
 {
   "name": "unbinapp",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

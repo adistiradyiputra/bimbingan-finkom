@@ -38,34 +38,6 @@ export class PopupComponentPage implements OnInit {
     this.popoverController.dismiss();
   }
 
-  // getcapture() {
-  //   this.storage.get('isLoggedIn').then(val => {
-  //     let data: Observable<any>;
-  //     data = this.http.get('http://localhost/konseling/api/getbyidbimbim/' + val);
-  //     data.subscribe(result => {
-  //       // console.log(result[0])
-  //       this.arrayData = result;
-  //       for(let a of this.arrayData){
-  //         console.log(a);
-  //       }
-  //       // console.log(this.arrayData)
-  //       // this.npm = result;
-  //       this.kd_capture = result[0].kd_capture
-  //       this.kd_bimbingan = result[0].kd_bimbingan;
-  //       this.judul = result[0].judul;
-  //       this.topik = result[0].topik;
-  //       this.dospem = result[0].dospem;
-  //       this.thn_akademik = result[0].thn_akademik;
-  //       console.log(result[0].kd_capture);
-  //       // console.log(result[0].kd_bimbingan);
-  //       // console.log(result[0].judul);
-  //       // console.log(result[0].topik);
-  //       // console.log(result[0].dospem);
-  //       // console.log(result[0].thn_akademik);
-
-  //     });
-  //   })
-  // }
 
   async showModal() {
     const modal = await this.modalCtrl.create({

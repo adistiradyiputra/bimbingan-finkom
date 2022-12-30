@@ -10,6 +10,17 @@
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
     
+    
+    <div style="margin-top: 20px; margin-left: 20px; margin-right: 20px;">
+      <ion-item style="margin-bottom: 15px; border-radius: 25px; box-shadow: 2px 8px #808080;">
+        <ion-label position="floating">Tipe Bimbingan</ion-label>
+        <ion-select (ionChange)="getskripsi()" placeholder="Pilih Tipe" [(ngModel)]="ctype">
+          <ion-select-option value="proposal">Proposal</ion-select-option>
+          <ion-select-option value="skripsi">Skripsi</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
     <div class="content_div" *ngFor="let hasil of arrayData">
       <ion-grid>
         <ion-row>
@@ -17,12 +28,12 @@
           <ion-card>
             <ion-item>
               <ion-thumbnail slot="start" >
-                <img src="/assets/london.png" alt="">
+                <img src="/assets/unbin.png" alt="">
               </ion-thumbnail>
               <ion-label>
                 <ion-note>Keterangan :</ion-note>
                 <h2>{{hasil.keterangan}} <span style="float: right">
-                <ion-icon name="ellipsis-vertical-outline" (click)="get(hasil.kd_bimbingan)" class="icon-detail"></ion-icon></span></h2>
+                <ion-icon style="font-size: 30px; padding-top: 10px;" name="eye-outline" (click)="get(hasil.kd_capture)" class="icon-detail"></ion-icon></span></h2>
                 <ion-note>Tanggal :</ion-note>
                 <h2 id="rate" >{{hasil.dentry}}</h2>
               </ion-label>
